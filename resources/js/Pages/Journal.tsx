@@ -1,10 +1,11 @@
+/** @jsxImportSource @emotion/react */
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { useEditable } from 'use-editable';
 import { emotionsToStyles, getEmotions } from "@/utils/emotions";
 
 export default function Journal() {
     const editorRef = useRef(null);
-    const [fullContent, setContent] = useState('I am very happy. I am very sadv.');
+    const [fullContent, setContent] = useState('I am very happy. I am very sad.');
     const [ranges, setRanges] = useState<Range[]>([]);
 
     const onEditableChange = useCallback((content: string) => {
@@ -46,17 +47,19 @@ export default function Journal() {
     const emotions = getEmotions();
     const styles = emotionsToStyles(emotions);
 
+    console.log(emotions, styles);
+
     return (
         <div css={ styles }>
-      <pre
-          style={ { whiteSpace: 'pre-wrap', caretColor: 'blue', caretShape: 'block' } }
-          ref={ editorRef }
-          tabIndex={ -1 } // Chrome quirk
-      >
-        <Fragment>
-          <span>{ fullContent + '\n' }</span>
-        </Fragment>
-      </pre>
+              <pre
+                  style={ { whiteSpace: 'pre-wrap', caretColor: 'blue', caretShape: 'block' } }
+                  ref={ editorRef }
+                  tabIndex={ -1 } // Chrome quirk
+              >
+                <Fragment>
+                  <span>{ fullContent + '\n' }</span>
+                </Fragment>
+              </pre>
 
             <button onClick={ onHighlight }>Test</button>
         </div>
