@@ -1,27 +1,10 @@
-/** @jsxImportSource @emotion/react */
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { useEditable } from 'use-editable';
 import { emotionsToStyles, getEmotions } from "@/utils/emotions";
 
-function highlightUsingEmotion(emotion: string) {
-    const selection = document.getSelection();
-    if (!selection) {
-        return;
-    }
-    if (selection.rangeCount <= 0) {
-        return;
-    }
-
-    const range: Range = selection.getRangeAt(0);
-    const highlight = new Highlight();
-    highlight.add(range);
-
-    CSS.highlights.set(emotion, highlight);
-}
-
 export default function Journal() {
     const editorRef = useRef(null);
-    const [fullContent, setContent] = useState('I am very happy. I am very sad.');
+    const [fullContent, setContent] = useState('I am very happy. I am very sadv.');
     const [ranges, setRanges] = useState<Range[]>([]);
 
     const onEditableChange = useCallback((content: string) => {
